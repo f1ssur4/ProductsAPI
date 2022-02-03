@@ -20,7 +20,8 @@ class CreateCatalogTable extends Migration
             $table->integer('id_category');
             $table->integer('id_availability');
             $table->double('price');
-            $table->foreignId('id_currency')->constrained('catalog_currencies');
+            $table->foreignId('id_currency')
+                ->constrained('catalog_currencies');
             $table->timestamps();
         });
     }
