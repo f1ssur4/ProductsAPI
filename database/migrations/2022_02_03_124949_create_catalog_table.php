@@ -18,7 +18,7 @@ class CreateCatalogTable extends Migration
             $table->string('name', 100);
             $table->integer('id_brand');
             $table->integer('id_category');
-            $table->integer('id_availability:');
+            $table->integer('id_availability');
             $table->double('price');
             $table->foreignId('id_currency')->constrained('catalog_currencies');
             $table->timestamps();
