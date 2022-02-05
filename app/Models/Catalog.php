@@ -12,26 +12,28 @@ class Catalog extends Model
     private $filter;
     private $products;
 
-    public function Currency()
+    public function currency()
     {
         return $this->belongsTo(CatalogCurrencies::class, 'id_currency');
     }
 
-    public function select()
+    public function getAll()
     {
         return $this->all();
     }
 
-    private function currencyConvert(int $price, int $rate)
+    private function getCurrencyConvertUAH($products)
     {
-        return $price * $rate;
+        foreach ($products as $product) {
+            $product->attributes['price'] *= $product->currency->rate;
+        }
     }
 
-    public function getFromCatalogByFilters($query_builder)
+    public function getInCategoryByFilters($query_builder)
     {
-        return $query_builder->get();
+        $products = $query_builder->get();
+        $this->getCurrencyConvertUAH($products);
+        return $products;
     }
-
-
 
 }

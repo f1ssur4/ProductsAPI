@@ -11,7 +11,7 @@ class CatalogCurrencies extends Model
     use HasFactory;
     protected $table = 'catalog_currencies';
 
-    public function Catalog()
+    public function catalog()
     {
         return $this->hasMany(Catalog::class, 'id_currency');
     }

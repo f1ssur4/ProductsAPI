@@ -21,7 +21,7 @@ class CatalogResource extends JsonResource
                 'id_category' => $this->id_category,
                 'id_availability' => $this->id_availability,
                 'price' => $this->price,
-                'currency_title' => new CurrencyResource($this->Currency),
+                'priceUAH' => 'грн.',
         ];
     }
 }

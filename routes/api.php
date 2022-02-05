@@ -20,5 +20,5 @@ use \App\Http\Controllers\CatalogController;
 //});
 Route::controller(CatalogController::class)->group(function () {
     Route::get('/products', 'index');
-    Route::get('/products/{id}', 'show');
+    Route::get('/products/{id}', 'show')->mi;
 });
