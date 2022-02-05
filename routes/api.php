@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\ProductsController;
+use \App\Http\Controllers\CatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +18,7 @@ use \App\Http\Controllers\ProductsController;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-
-Route::get('products', [ProductsController::class, 'index']);
+Route::controller(CatalogController::class)->group(function () {
+    Route::get('/products', 'index');
+    Route::get('/products/{id}', 'show');
+});
