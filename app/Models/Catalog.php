@@ -20,7 +20,7 @@ class Catalog extends Model
     {
         $products['products'] = $this->all();
         CatalogCurrencies::getCurrencyConvertUAH($products['products']);
-        $this->addCommonValues($products);
+        $products = $this->addExtraInfo($products);
         return $products;
     }
 
@@ -29,11 +29,11 @@ class Catalog extends Model
         $products['products'] = $query_builder->get();
         CatalogCurrencies::getCurrencyConvertUAH($products['products']);
         $products['products'] = PriceFilter::filtrate($products['products'], $request->get('price')['from'], $request->get('price')['to']);
-        $products = $this->addCommonValues($products);
+        $products = $this->addExtraInfo($products);
         return $products;
     }
 
-    private function addCommonValues($array)
+    private function addExtraInfo($array)
     {
         $array['totalNumberOfFilteredItems'] = count($array['products']);
         $array['totalQuantityOfGoods'] = self::count();

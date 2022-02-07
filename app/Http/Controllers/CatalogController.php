@@ -24,9 +24,9 @@ class CatalogController extends Controller
         return response()->json($products);
     }
 
-    public function getByFilters($id, ProductsFilter $filter, Request $request)
+    public function getByFilters($idCategory, ProductsFilter $filter, Request $request)
     {
-        $products = $this->catalog->getInCategoryByFilters($filter->applyFilters($id, $request), $request);
+        $products = $this->catalog->getInCategoryByFilters($filter->applyFilters($idCategory, $request), $request);
         $products['products'] = CatalogResource::collection($products['products']);
         return response()->json($products);
     }

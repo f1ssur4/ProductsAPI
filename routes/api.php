@@ -16,5 +16,5 @@ use \App\Http\Controllers\CatalogController;
 
 Route::controller(CatalogController::class)->group(function () {
     Route::get('/products', 'getAll');
-    Route::get('/products/{id}', 'getByFilters');
+    Route::get('/products/{id}', 'getByFilters')->middleware(\App\Http\Middleware\PriceSortValid::class);
 });
