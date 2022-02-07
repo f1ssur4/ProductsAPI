@@ -20,6 +20,7 @@ class CatalogResource extends JsonResource
                 'id_brand' => $this->id_brand,
                 'id_category' => $this->id_category,
                 'id_availability' => $this->id_availability,
+                'id_currency' => $this->id_currency,
                 'price' => $this->price,
                 'priceUAH' => 'грн.',
         ];

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Services\Filters;
+namespace App\Services\Filters\Products;
 
 use App\Models\Catalog;
+use App\Services\Filters\FiltersHandler;
 
-class CatalogFilter
+class ProductsFilter
 {
     use FiltersHandler;
 
@@ -26,11 +27,6 @@ class CatalogFilter
     private function availability($value)
     {
         return $this->query_builder->where('id_availability', $value);
-    }
-
-    private function price($value)
-    {
-        return $this->query_builder->whereBetween('price', $value);
     }
 
     private function sorting($value)

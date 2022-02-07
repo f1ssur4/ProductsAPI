@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CatalogResource;
 use App\Models\Catalog;
-use App\Services\Filters\CatalogFilter;
+use App\Services\Filters\Products\ProductsFilter;
 use Illuminate\Http\Request;
 
 
@@ -17,20 +17,17 @@ class CatalogController extends Controller
         $this->catalog = new Catalog();
     }
 
-    public function index()
+    public function getAll()
     {
-        $products['products'] = CatalogResource::collection($this->catalog->getAll());
-        $products['totalNumberOfFilteredItems'] = count($products['products']);
-        $products['totalQuantityOfGoods'] = Catalog::count();
+        $products = $this->catalog->getAll();
+        $products['products'] = CatalogResource::collection($products['products']);
         return response()->json($products);
     }
 
-    public function show($id, CatalogFilter $filter, Request $request)
+    public function getByFilters($id, ProductsFilter $filter, Request $request)
     {
-        $filter->category($id);
-        $products['products'] = CatalogResource::collection($this->catalog->getInCategoryByFilters($filter->applyFilters($request)));
-        $products['totalNumberOfFilteredItems'] = count($products['products']);
-        $products['totalQuantityOfGoods'] = Catalog::count();
+        $products = $this->catalog->getInCategoryByFilters($filter->applyFilters($id, $request), $request);
+        $products['products'] = CatalogResource::collection($products['products']);
         return response()->json($products);
     }
 }

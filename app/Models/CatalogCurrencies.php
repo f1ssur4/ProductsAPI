@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Catalog;
 
 class CatalogCurrencies extends Model
 {
@@ -14,5 +13,12 @@ class CatalogCurrencies extends Model
     public function catalog()
     {
         return $this->hasMany(Catalog::class, 'id_currency');
+    }
+
+    public static function getCurrencyConvertUAH($products)
+    {
+        foreach ($products as $product) {
+            $product->attributes['price'] = round($product->attributes['price'] * $product->currency->rate);
+        }
     }
 }

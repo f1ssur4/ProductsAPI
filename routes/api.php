@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CatalogController;
 
@@ -15,10 +14,7 @@ use \App\Http\Controllers\CatalogController;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
 Route::controller(CatalogController::class)->group(function () {
-    Route::get('/products', 'index');
-    Route::get('/products/{id}', 'show')->mi;
+    Route::get('/products', 'getAll');
+    Route::get('/products/{id}', 'getByFilters');
 });
